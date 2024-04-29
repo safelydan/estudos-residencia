@@ -1,12 +1,9 @@
-import { Sequelize, Model, DataTypes } from "sequelize";
+import {Model, DataTypes } from "sequelize";
+import sequelize from "./db.js";
 
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: "database.sqlite",
-});
 
 // definindo as classes de modelo
-class Cliente extends Model {
+export class Cliente extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -19,11 +16,4 @@ class Cliente extends Model {
 
 Cliente.init(sequelize);
 
-(async () => {
-  await sequelize.sync();
-  const cliente1 = await Cliente.create({ nome: "Alberto" });
-  console.log(cliente1 instanceof Cliente);
-  console.log(cliente1.nome);
-})();
-
-export { Cliente };
+export default Cliente;
