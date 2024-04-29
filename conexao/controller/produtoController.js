@@ -14,18 +14,33 @@ export async function adicionarProduto() {
 
 export async function listarProdutos(){
     const produtos = await Produto.findAll();
-    console.log(JSON.stringify(produtos, null, 2));
+    if(produtos.length < 1){
+        console.log('Não há produtos cadastrados.')
+    }
+    produtos.forEach(produto => {
+        console.log(`Lista de produtos: 
+  Id: ${produto.id}
+  Nome do produto: ${produto.nome}
+  Descrição do produto: ${produto.descricao} 
+  Preço: ${produto.preco}`)
+    });
     
     const menu = new MenuPrincipal()
-
+    
     menu.MenuPrincipal()
+    // console.log(JSON.stringify(produtos, null, 2));
 }
 
 export async function deletarProduto(){
     const idProduto = await excluirProduto(); 
 
-    const pacienteExcluido = await Produto.destroy({where: {id: idProduto}});
-    console.log(pacienteExcluido.nome);
+    const produtoExcluido = await Produto.findOne({where: {id: idProduto}});
+    if (produtoExcluido) {
+        await Produto.destroy({where: {id: idProduto}});
+        console.log(`Produto ${produtoExcluido.nome} excluído com sucesso.`);
+    } else {
+        console.log(`Não foi possível encontrar o produto com o ID ${idProduto}.`);
+    }
 
     const menu = new MenuPrincipal();
     menu.MenuPrincipal();

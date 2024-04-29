@@ -8,21 +8,21 @@ class MenuPrincipal {
         const resposta = await inquirer.prompt({
             type: "list",
             name: "opcao",
-            message: "o que voce deseja fazer",
+            message: "O que voce deseja fazer? ",
             choices: [
-                "1-cadastrar novo produto",
-                "2-excluir produto",
-                "3-listar produtos",
+                "1-Cadastrar novo produto",
+                "2-Excluir produto",
+                "3-Listar produtos",
             ]
         })
         switch (resposta.opcao){
-        case "1-cadastrar novo produto":
+        case "1-Cadastrar novo produto":
             adicionarProduto()
             break;
-        case "2-excluir produto":
+        case "2-Excluir produto":
             deletarProduto()
             break;
-        case "3-listar produtos":
+        case "3-Listar produtos":
             listarProdutos()
             break;
         }
