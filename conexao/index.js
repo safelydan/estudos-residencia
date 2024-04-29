@@ -11,12 +11,12 @@ export async function criarProduto() {
     },
     {
       type: "input",
-      name: "descriçao",
+      name: "descricao",
       message: "digite a descrição do produto que voce deseja adicionar",
     },
     {
       type: "input",
-      name: "valor",
+      name: "preco",
       message: "digite o preço do produto que voce deseja adicionar",
     },
   ]);
@@ -25,11 +25,7 @@ export async function criarProduto() {
   const preco = parseFloat(respostas.preco);
 
 
-  const novoProduto = await Produto.create({
-    nome: respostas.nome,
-    descricao: respostas.descricao,
-    preco: preco,
-  });
+  const novoProduto = await Produto.create(respostas);
 //   console.log(novoProduto);
 }
 
