@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { cadastrarProduto} from "./menu.js";
-import { adicionarProduto, listarProdutos, deletarProduto } from "../controller/produtoController.js";
+import { adicionarProduto, listarProdutos, deletarProduto, updateProduto } from "../controller/produtoController.js";
 
 
 class MenuPrincipal {
@@ -12,7 +12,8 @@ class MenuPrincipal {
             choices: [
                 "1-Cadastrar novo produto",
                 "2-Excluir produto",
-                "3-Listar produtos",
+                "3-Atualizar produto",
+                "4-Listar produtos",
             ]
         })
         switch (resposta.opcao){
@@ -22,7 +23,10 @@ class MenuPrincipal {
         case "2-Excluir produto":
             deletarProduto()
             break;
-        case "3-Listar produtos":
+        case "3-Atualizar produto":
+            updateProduto()
+            break;
+        case "4-Listar produtos":
             listarProdutos()
             break;
         }

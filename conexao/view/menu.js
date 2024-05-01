@@ -31,3 +31,28 @@ export async function excluirProduto(){
     return resposta.id;
 
 }
+
+export async function atualizarProduto(){
+  const respostas = await inquirer.prompt([{
+    type: 'input',
+    name: 'idProduto',
+    message: 'Digite o ID do produto que você deseja alterar: '
+  },
+  {
+    type: "input",
+    name: "novoNome",
+    message: "Qual o novo nome do produto? "
+  },
+  {
+    type: 'input',
+    name: 'novaDescricao',
+    message: "Qual a nova descrição do produto?"
+  },
+  {
+    type: "input",
+    name: "novoPreco",
+    message: "Qual o novo preço do produto? "
+  },
+]);
+  return respostas;
+}

@@ -1,5 +1,5 @@
 import MenuPrincipal from "../view/menuPrincipal.js";
-import { cadastrarProduto, excluirProduto } from "../view/menu.js";
+import { cadastrarProduto, excluirProduto, atualizarProduto } from "../view/menu.js";
 import Produto from "../models/model.js";
 
 
@@ -40,6 +40,27 @@ export async function deletarProduto(){
         console.log(`Produto ${produtoExcluido.nome} excluído com sucesso.`);
     } else {
         console.log(`Não foi possível encontrar o produto com o ID ${idProduto}.`);
+    }
+
+    const menu = new MenuPrincipal();
+    menu.MenuPrincipal();
+}
+export async function updateProduto(){
+    const produto = await atualizarProduto();
+    const idProduto = await produto.idProduto;
+
+    const produtoEncontrado = await Produto.findOne({ where: { id: idProduto } });
+    
+    if (produtoEncontrado) {
+        await Produto.update({
+            nome: produto.novoNome,
+            descricao: produto.novaDescricao,
+            preco: parseFloat(produto.novoPreco)
+        }, { where: { id: idProduto } });
+
+        console.log(`Produto ${produtoEncontrado.nome} atualizado com sucesso.`);
+    } else {
+        console.log(`Não foi possível encontrar o produto com o ID ${respostas.idProduto}.`);
     }
 
     const menu = new MenuPrincipal();
