@@ -1,9 +1,9 @@
-import MenuPrincipal from "../view/menuPrincipal.js";
+import MenuPrincipal from "../view/menuIntermediario.js";
 import {
   cadastrarProduto,
   excluirProduto,
   atualizarProduto,
-} from "../view/menu.js";
+} from "../view/menusInternos.js";
 import Produto from "../models/produto.js";
 import Fabricante from "../models/fabricante.js";
 

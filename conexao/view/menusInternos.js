@@ -1,4 +1,4 @@
-import MenuPrincipal from "./menuPrincipal.js";
+import MenuPrincipal from "./menuIntermediario.js";
 import Produto from "../models/produto.js";
 import inquirer from "inquirer";
 export async function cadastrarProduto() {

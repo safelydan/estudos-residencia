@@ -1,39 +1,34 @@
 import inquirer from "inquirer";
-import { cadastrarProduto } from "./menu.js";
-import {
-  adicionarProduto,
-  listarProdutos,
-  deletarProduto,
-  updateProduto,
-} from "../controller/produtoController.js";
+import MenuPrincipal from "./menuIntermediario.js";
 
- export async function MenuPrincipal() {
-    const resposta = await inquirer.prompt({
+export async function mainMenu() {
+  const respostas = await inquirer.prompt([
+    {
       type: "list",
       name: "opcao",
-      message: "O que voce deseja fazer? ",
+      message: "O que você deseja fazer? ",
       choices: [
-        "1-Cadastrar novo produto",
-        "2-Excluir produto",
-        "3-Atualizar produto",
-        "4-Listar produtos",
+        "1-Menu Produtos",
+        "2-Menu Fabricantes",
+        "3-Menu Categorias",
+        "4-Sair",
       ],
-    });
-    switch (resposta.opcao) {
-      case "1-Cadastrar novo produto":
-        adicionarProduto();
-        break;
-      case "2-Excluir produto":
-        deletarProduto();
-        break;
-      case "3-Atualizar produto":
-        updateProduto();
-        break;
-      case "4-Listar produtos":
-        listarProdutos();
-        break;
-    }
+    },
+  ]);
+  switch (respostas.opcao) {
+    case "1-Menu Produtos":
+      MenuPrincipal();
+      break;
+    case "2-Menu Fabricantes":
+      menuFabricantes();
+      break;
+    case "3-Menu Categorias":
+      menuCategorias();
+      break;
+    case "4-Sair":
+      console.log("Fim...");
+      break;
   }
+}
 
-
-export default MenuPrincipal;
+export default mainMenu;
