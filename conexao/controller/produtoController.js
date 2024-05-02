@@ -9,8 +9,21 @@ export async function adicionarProduto() {
   const respostas = await cadastrarProduto();
   // converter o preço para número
   const preco = parseFloat(respostas.preco);
-  // criar um novo objeto de produto com base nas respostas
-  const novoProduto = await Produto.create(respostas);
+
+  const nomeFabricante = await Fabricante.findOne({where: {nome: respostas.nomeFabricante}})
+  if (nomeFabricante) {
+    // Se o fabricante existir, criar um novo objeto de produto com base nas respostas
+    const novoProduto = await Produto.create({
+      nome: respostas.nome,
+      descricao: respostas.descricao,
+      preco: preco,
+      fabricanteId: nomeFabricante.id // Definir o ID do fabricante no novo produto
+    });
+    console.log("Produto cadastrado com sucesso!");
+  } else {
+    console.log("Fabricante não encontrado.");
+  }
+
   // mostrar o menu principal após adicionar o produto
   const menu = new MenuPrincipal();
   menu.MenuPrincipal();
@@ -19,7 +32,8 @@ export async function adicionarProduto() {
 // função para listar todos os produtos
 export async function listarProdutos() {
   // obter todos os produtos cadastrados
-  const produtos = await Produto.findAll({ include: Fabricante });
+  // const produtos = await Produto.findAll({ include: Fabricante });
+  const produtos = await Produto.findAll({ include: Fabricante, order: [['createdAt', 'ASC']] });
 
   if (produtos.length < 1) {
     console.log("Não há produtos cadastrados.");

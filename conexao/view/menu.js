@@ -18,6 +18,11 @@ export async function cadastrarProduto() {
       name: "preco",
       message: "Digite o preço do produto que você deseja adicionar: ",
     },
+    {
+      type: "input",
+      name: "nomeFabricante",
+      message: "Qual a fabricante do produto? "
+    }
   ]);
   return respostas;
 }
@@ -54,8 +59,7 @@ export async function atualizarProduto() {
       type: "input",
       name: "novoPreco",
       message: "Qual o novo preço do produto? ",
-    },
-    
+    }
   ]);
   return respostas;
 }
