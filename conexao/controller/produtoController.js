@@ -1,6 +1,7 @@
 import MenuPrincipal from "../view/menuPrincipal.js";
 import {cadastrarProduto, excluirProduto, atualizarProduto} from "../view/menu.js";
-import Produto from "../models/model.js";
+import Produto from "../models/produto.js";
+import Fabricante from "../models/fabricante.js";
 
 
 export async function adicionarProduto() {
@@ -18,7 +19,7 @@ export async function adicionarProduto() {
 // função para listar todos os produtos
 export async function listarProdutos() {
   // obter todos os produtos cadastrados
-  const produtos = await Produto.findAll();
+  const produtos = await Produto.findAll({include: Fabricante});
 
   if (produtos.length < 1) {
     console.log("Não há produtos cadastrados.");
@@ -29,7 +30,8 @@ export async function listarProdutos() {
   Id: ${produto.id}
   Nome do produto: ${produto.nome}
   Descrição do produto: ${produto.descricao} 
-  Preço: ${produto.preco}`);
+  Preço: ${produto.preco}
+  Fabricante: ${produto.Fabricante.nome}`);
   });
 
   const menu = new MenuPrincipal();

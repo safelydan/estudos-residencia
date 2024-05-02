@@ -1,5 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../db.js";
+import CategoriaProduto from "./produtoCategoria.js";
+import Categoria from "./categoria.js";
 
 class Produto extends Model {
   // método estático para inicializar o modelo Produto
@@ -30,5 +32,10 @@ class Produto extends Model {
 
 // inicialização do modelo Produto com o Sequelize
 Produto.init(sequelize);
+
+Produto.hasMany(CategoriaProduto)
+CategoriaProduto.belongsTo(Produto)
+Categoria.hasMany(CategoriaProduto)
+CategoriaProduto.belongsTo(Categoria)
 
 export default Produto;

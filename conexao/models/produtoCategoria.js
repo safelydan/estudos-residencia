@@ -1,8 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../db.js";
-import Produto from "./produto.js";
 
-class Fabricante extends Model {
+export class CategoriaProduto extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -14,14 +13,11 @@ class Fabricante extends Model {
         },
         nome: { type: DataTypes.STRING },
       },
-      { sequelize, modelName: "Fabricante", tableName: "Fabricantes" }
+      { sequelize, modelName: "CategoriaProduto", tableName: "CategoriaProdutos" }
     );
   }
 }
 
-Fabricante.init(sequelize);
+CategoriaProduto.init(sequelize);
 
-Fabricante.hasMany(Produto);
-Produto.belongsTo(Fabricante);
-
-export default Fabricante;
+export default CategoriaProduto;
