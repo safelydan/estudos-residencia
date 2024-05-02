@@ -1,8 +1,11 @@
 import MenuPrincipal from "../view/menuPrincipal.js";
-import {cadastrarProduto, excluirProduto, atualizarProduto} from "../view/menu.js";
+import {
+  cadastrarProduto,
+  excluirProduto,
+  atualizarProduto,
+} from "../view/menu.js";
 import Produto from "../models/produto.js";
 import Fabricante from "../models/fabricante.js";
-
 
 export async function adicionarProduto() {
   // obter as respostas do formulário de cadastro de produto
@@ -10,14 +13,16 @@ export async function adicionarProduto() {
   // converter o preço para número
   const preco = parseFloat(respostas.preco);
 
-  const nomeFabricante = await Fabricante.findOne({where: {nome: respostas.nomeFabricante}})
+  const nomeFabricante = await Fabricante.findOne({
+    where: { nome: respostas.nomeFabricante },
+  });
   if (nomeFabricante) {
     // Se o fabricante existir, criar um novo objeto de produto com base nas respostas
     const novoProduto = await Produto.create({
       nome: respostas.nome,
       descricao: respostas.descricao,
       preco: preco,
-      fabricanteId: nomeFabricante.id // Definir o ID do fabricante no novo produto
+      fabricanteId: nomeFabricante.id, // Definir o ID do fabricante no novo produto
     });
     console.log("Produto cadastrado com sucesso!");
   } else {
@@ -25,22 +30,27 @@ export async function adicionarProduto() {
   }
 
   // mostrar o menu principal após adicionar o produto
-  const menu = new MenuPrincipal();
-  menu.MenuPrincipal();
+
+  MenuPrincipal();
 }
 
 // função para listar todos os produtos
 export async function listarProdutos() {
   // obter todos os produtos cadastrados
   // const produtos = await Produto.findAll({ include: Fabricante });
-  const produtos = await Produto.findAll({ include: Fabricante, order: [['createdAt', 'ASC']] });
+  const produtos = await Produto.findAll({
+    include: Fabricante,
+    order: [["createdAt", "ASC"]],
+  });
 
   if (produtos.length < 1) {
     console.log("Não há produtos cadastrados.");
   } else {
     // iterar sobre cada produto e exibir suas informações
     produtos.forEach((produto) => {
-      let nomeFabricante = produto.Fabricante ? produto.Fabricante.nome : "Sem fabricante";
+      let nomeFabricante = produto.Fabricante
+        ? produto.Fabricante.nome
+        : "Sem fabricante";
       console.log(`Lista de produtos: 
         Id: ${produto.id}
         Nome do produto: ${produto.nome}
@@ -50,10 +60,8 @@ export async function listarProdutos() {
     });
   }
 
-  const menu = new MenuPrincipal();
-  menu.MenuPrincipal();
+  MenuPrincipal();
 }
-
 
 // função para excluir um produto
 export async function deletarProduto() {
@@ -70,8 +78,7 @@ export async function deletarProduto() {
   }
 
   // mostrar o menu principal após excluir o produto
-  const menu = new MenuPrincipal();
-  menu.MenuPrincipal();
+  MenuPrincipal();
 }
 
 // função para atualizar um produto
@@ -103,6 +110,5 @@ export async function updateProduto() {
   }
 
   // mostrar o menu principal após atualizar o produto
-  const menu = new MenuPrincipal();
-  menu.MenuPrincipal();
+  MenuPrincipal();
 }

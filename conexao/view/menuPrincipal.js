@@ -7,8 +7,7 @@ import {
   updateProduto,
 } from "../controller/produtoController.js";
 
-class MenuPrincipal {
-  async MenuPrincipal() {
+ export async function MenuPrincipal() {
     const resposta = await inquirer.prompt({
       type: "list",
       name: "opcao",
@@ -35,6 +34,6 @@ class MenuPrincipal {
         break;
     }
   }
-}
+
 
 export default MenuPrincipal;
