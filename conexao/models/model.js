@@ -27,6 +27,7 @@ class Produto extends Model {
   }
 }
 
+
 // inicialização do modelo Produto com o Sequelize
 Produto.init(sequelize);
 

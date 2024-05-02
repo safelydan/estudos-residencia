@@ -11,7 +11,7 @@ const __dirname = dirname(__filename);
 dotenv.config({ path: `${__dirname}/.env` });
 
 // criando uma instância do Sequelize com as configurações do banco de dados
-const sequelize = new Sequelize(
+export const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USERNAME,
   process.env.DB_PASSWORD,
