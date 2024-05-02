@@ -21,7 +21,7 @@ class Fabricante extends Model {
 
 Fabricante.init(sequelize);
 
-Fabricante.hasMany(Produto);
-Produto.belongsTo(Fabricante);
+Fabricante.hasMany(Produto, { foreignKey: 'fabricanteId' });
+Produto.belongsTo(Fabricante, { foreignKey: 'fabricanteId' });
 
 export default Fabricante;

@@ -33,9 +33,9 @@ class Produto extends Model {
 // inicialização do modelo Produto com o Sequelize
 Produto.init(sequelize);
 
-Produto.hasMany(CategoriaProduto)
-CategoriaProduto.belongsTo(Produto)
-Categoria.hasMany(CategoriaProduto)
-CategoriaProduto.belongsTo(Categoria)
+Produto.hasMany(CategoriaProduto, {foreignKey: 'produtoId'})
+CategoriaProduto.belongsTo(Produto, {foreignKey: 'produtoId'})
+Categoria.hasMany(CategoriaProduto, {foreignKey: 'categoriaId'})
+CategoriaProduto.belongsTo(Categoria, {foreignKey: 'categoriaId'})
 
 export default Produto;

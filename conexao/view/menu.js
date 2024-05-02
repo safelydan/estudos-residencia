@@ -55,6 +55,7 @@ export async function atualizarProduto() {
       name: "novoPreco",
       message: "Qual o novo preço do produto? ",
     },
+    
   ]);
   return respostas;
 }
