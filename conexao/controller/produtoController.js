@@ -35,34 +35,34 @@ export async function adicionarProduto() {
   mainMenu();
 }
 
-// função para listar todos os produtos
 export async function listarProdutos() {
-  // obter todos os produtos cadastrados
-  // const produtos = await Produto.findAll({ include: Fabricante });
-  const produtos = await Produto.findAll({
-    include: Fabricante,
-    order: [["createdAt", "ASC"]],
-  });
+  try {
+    // Obter todos os produtos cadastrados
+    const produtos = await Produto.findAll();
 
-  if (produtos.length < 1) {
-    console.log("Não há produtos cadastrados.");
-  } else {
-    // iterar sobre cada produto e exibir suas informações
-    produtos.forEach((produto) => {
-      let nomeFabricante = produto.Fabricante
-        ? produto.Fabricante.nome
-        : "Sem fabricante";
-      console.log(`Lista de produtos: 
-        Id: ${produto.id}
-        Nome do produto: ${produto.nome}
-        Descrição do produto: ${produto.descricao} 
-        Preço: ${produto.preco}
-        Fabricante: ${nomeFabricante}`);
-    });
+    if (produtos.length < 1) {
+      console.log("Não há produtos cadastrados.");
+    } else {
+      // Iterar sobre cada produto e exibir suas informações
+      console.log('Lista de produtos:')
+      for (const produto of produtos) {
+        // Carregar o fabricante associado a cada produto de forma assíncrona (lazy loading)
+        const fabricante = await produto.getFabricante();
+
+        console.log(`Id: ${produto.id}
+  Nome do produto: ${produto.nome}
+  Descrição do produto: ${produto.descricao} 
+  Preço: ${produto.preco}
+  Fabricante: ${fabricante ? fabricante.nome : "Sem fabricante"}`);
+      }
+    }
+  } catch (error) {
+    console.error("Erro ao listar produtos:", error);
   }
 
   mainMenu();
 }
+
 
 // função para excluir um produto
 export async function deletarProduto() {
