@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
-import MenuPrincipal from "./menuIntermediario.js";
+import {menuPrincipal} from "./menuIntermediario.js";
+import { menuFabricantes } from "./menuIntermediario.js";
 
 export async function mainMenu() {
   const respostas = await inquirer.prompt([
@@ -17,7 +18,7 @@ export async function mainMenu() {
   ]);
   switch (respostas.opcao) {
     case "1-Menu Produtos":
-      MenuPrincipal();
+      menuPrincipal();
       break;
     case "2-Menu Fabricantes":
       menuFabricantes();

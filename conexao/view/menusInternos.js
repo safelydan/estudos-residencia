@@ -1,6 +1,7 @@
-import MenuPrincipal from "./menuIntermediario.js";
+import {menuPrincipal} from "./menuIntermediario.js";
 import Produto from "../models/produto.js";
 import inquirer from "inquirer";
+
 export async function cadastrarProduto() {
   const respostas = await inquirer.prompt([
     {
@@ -63,3 +64,43 @@ export async function atualizarProduto() {
   ]);
   return respostas;
 }
+
+export async function cadastrarFabricante() {
+    const respostas = await inquirer.prompt([
+      {
+        type: "input",
+        name: "nome",
+        message: "Digite o nome do fabricante que você deseja adicionar: ",
+      },
+    ]);
+    return respostas;
+  }
+  
+  export async function excluirFabricante() {
+    const resposta = await inquirer.prompt([
+      {
+        type: "input",
+        name: "id",
+        message: "Digite o id do fabricante que voce deseja excluir: ",
+      },
+    ]);
+    return resposta.id;
+  }
+  
+  export async function atualizarFabricante() {
+    const respostas = await inquirer.prompt([
+      {
+        type: "input",
+        name: "idFabricante",
+        message: "Digite o ID do fabricante que você deseja alterar: ",
+      },
+      {
+        type: "input",
+        name: "novoNome",
+        message: "Qual o novo nome do fabricante? ",
+      },
+    ]);
+    return respostas;
+  }
+  
+  

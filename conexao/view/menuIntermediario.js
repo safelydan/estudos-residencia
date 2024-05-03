@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { cadastrarProduto } from "./menusInternos.js";
+import { adicionarFabricante, listarFabricantes } from "../controller/fabricanteController.js";
 import {
   adicionarProduto,
   listarProdutos,
@@ -7,7 +7,7 @@ import {
   updateProduto,
 } from "../controller/produtoController.js";
 
- export async function MenuPrincipal() {
+ export async function menuPrincipal() {
     const resposta = await inquirer.prompt({
       type: "list",
       name: "opcao",
@@ -35,5 +35,32 @@ import {
     }
   }
 
+  export async function menuFabricantes(){
+    const resposta = await inquirer.prompt({
+      type: "list",
+      name: "opcao",
+      message: "O que voce deseja fazer? ",
+      choices: [
+        "1-Cadastrar novo fabricante",
+        "2-Excluir fabricante",
+        "3-Atualizar fabricante",
+        "4-Listar fabricante",
+      ],
+    })
+    switch (resposta.opcao){
+      case "1-Cadastrar novo fabricante":
+        adicionarFabricante();
+        break;
+      case "2-Excluir fabricante":
+        deletaFabricante();
+        break;
+      case "3-Atualizar fabricante":
+        updatFabricante();
+        break;
+      case "4-Listar fabricante":
+        listarFabricantes();
+        break;
+    }
+  }
 
-export default MenuPrincipal;
+  export default {menuPrincipal}

@@ -1,4 +1,4 @@
-import MenuPrincipal from "../view/menuIntermediario.js";
+import {menuPrincipal} from "../view/menuIntermediario.js";
 import {
   cadastrarProduto,
   excluirProduto,
@@ -31,7 +31,7 @@ export async function adicionarProduto() {
 
   // mostrar o menu principal após adicionar o produto
 
-  MenuPrincipal();
+  menuPrincipal();
 }
 
 // função para listar todos os produtos
@@ -60,7 +60,7 @@ export async function listarProdutos() {
     });
   }
 
-  MenuPrincipal();
+  menuPrincipal();
 }
 
 // função para excluir um produto
@@ -78,7 +78,7 @@ export async function deletarProduto() {
   }
 
   // mostrar o menu principal após excluir o produto
-  MenuPrincipal();
+  menuPrincipal();
 }
 
 // função para atualizar um produto
@@ -110,5 +110,5 @@ export async function updateProduto() {
   }
 
   // mostrar o menu principal após atualizar o produto
-  MenuPrincipal();
+  menuPrincipal();
 }
