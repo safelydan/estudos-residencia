@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { adicionarFabricante, listarFabricantes } from "../controller/fabricanteController.js";
+import { adicionarFabricante, listarFabricantes, deletarFabricante } from "../controller/fabricanteController.js";
 import {
   adicionarProduto,
   listarProdutos,
@@ -43,8 +43,7 @@ import {
       choices: [
         "1-Cadastrar novo fabricante",
         "2-Excluir fabricante",
-        "3-Atualizar fabricante",
-        "4-Listar fabricante",
+        "3-Listar fabricante",
       ],
     })
     switch (resposta.opcao){
@@ -52,12 +51,9 @@ import {
         adicionarFabricante();
         break;
       case "2-Excluir fabricante":
-        deletaFabricante();
+        deletarFabricante();
         break;
-      case "3-Atualizar fabricante":
-        updatFabricante();
-        break;
-      case "4-Listar fabricante":
+      case "3-Listar fabricante":
         listarFabricantes();
         break;
     }

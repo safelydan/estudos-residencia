@@ -6,6 +6,7 @@ import {
 } from "../view/menusInternos.js";
 import Produto from "../models/produto.js";
 import Fabricante from "../models/fabricante.js";
+import {mainMenu} from "../view/menuPrincipal.js";
 
 export async function adicionarProduto() {
   // obter as respostas do formulário de cadastro de produto
@@ -31,7 +32,7 @@ export async function adicionarProduto() {
 
   // mostrar o menu principal após adicionar o produto
 
-  menuPrincipal();
+  mainMenu();
 }
 
 // função para listar todos os produtos
@@ -60,7 +61,7 @@ export async function listarProdutos() {
     });
   }
 
-  menuPrincipal();
+  mainMenu();
 }
 
 // função para excluir um produto
@@ -72,13 +73,13 @@ export async function deletarProduto() {
   if (produtoExcluido) {
     // excluir o produto do banco de dados
     await Produto.destroy({ where: { id: idProduto } });
-    console.log(`Produto ${produtoExcluido.nome} excluído com sucesso.`);
+    console.log(`Produto excluído com sucesso.`);
   } else {
     console.log(`Não foi possível encontrar o produto com o ID ${idProduto}.`);
   }
 
   // mostrar o menu principal após excluir o produto
-  menuPrincipal();
+  mainMenu();
 }
 
 // função para atualizar um produto
@@ -110,5 +111,5 @@ export async function updateProduto() {
   }
 
   // mostrar o menu principal após atualizar o produto
-  menuPrincipal();
+  mainMenu();
 }
