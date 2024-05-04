@@ -53,7 +53,7 @@ import {
       case "2-Excluir fabricante":
         deletarFabricante();
         break;
-      case "3-Listar fabricante":
+      case "3-Listar fabricantes":
         listarFabricantes();
         break;
     }

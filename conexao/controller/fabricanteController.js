@@ -2,6 +2,7 @@ import inquirer from "inquirer";
 import Fabricante from "../models/fabricante.js";
 import { cadastrarFabricante, excluirFabricante } from "../view/menusInternos.js"; // importando funções relacionadas aos menus internos
 import mainMenu from "../view/menuPrincipal.js";
+import Produto from "../models/produto.js";
 
 // função para adicionar um novo fabricante
 export async function adicionarFabricante(){
@@ -14,7 +15,7 @@ export async function adicionarFabricante(){
     });
 
     // exibe uma mensagem de confirmação
-    console.log('Fabricante cadastrado com sucesso');
+    console.log(`Fabricante ${novoFabricante.nome} cadastrado com sucesso`);
 
     // volta para o menu principal
     mainMenu();
@@ -26,13 +27,13 @@ export async function listarFabricantes(){
     const fabricantes = await Fabricante.findAll();
 
     // exibe os dados de cada fabricante
-    fabricantes.forEach((fabricante) => {
-        console.log(`Lista de fabricantes:
-Id: ${fabricante.id}
-Nome: ${fabricante.nome}`);
-    });
-
-    // volta para o menu principal
+    console.log('Lista de fabricantes: ')
+    for (const fabricante of fabricantes) {
+        const produtos = await Produto.findAll({where: {fabricanteId: fabricante.id}}) 
+        console.log(`Id: ${fabricante.id}
+  Nome: ${fabricante.nome}
+  Produtos: ${produtos.length > 0 ? produtos.map(produto => produto.nome).join(', ') : "Sem produtos"}`);
+    }
     mainMenu();
 }
 
