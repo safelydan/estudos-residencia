@@ -43,7 +43,7 @@ import {
       choices: [
         "1-Cadastrar novo fabricante",
         "2-Excluir fabricante",
-        "3-Listar fabricante",
+        "3-Listar fabricantes",
       ],
     })
     switch (resposta.opcao){
