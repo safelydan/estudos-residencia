@@ -1,8 +1,10 @@
 import path from 'path';
 
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
 export default {
-  config: path.resolve('config', 'database.js'),
-  'models-path': path.resolve('src', 'models'),
-  'seeders-path': path.resolve('src', 'seeders'),
-  'migrations-path': path.resolve('src', 'database', 'migrations')
+  config: path.resolve(__dirname, 'config', 'database.js'),
+  'models-path': path.resolve(__dirname, 'src', 'models'),
+  'seeders-path': path.resolve(__dirname, 'src', 'seeders'),
+  'migrations-path': path.resolve(__dirname, 'database', 'migrations')
 };
