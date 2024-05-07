@@ -2,14 +2,6 @@
 
 Este é um exemplo simples de como usar o Sequelize para criar e gerenciar um banco de dados em um projeto Node.js.
 
-## Instalação
-
-Certifique-se de ter o Node.js instalado em sua máquina.
-
-1. Clone este repositório para o seu computador.
-2. No terminal, navegue até a pasta do projeto.
-3. Execute o comando `npm install` para instalar as dependências.
-
 ## Configuração do Banco de Dados
 
 Antes de começar, você precisará configurar o banco de dados. Este projeto utiliza o Sequelize, um ORM para Node.js, para interagir com o banco de dados.
