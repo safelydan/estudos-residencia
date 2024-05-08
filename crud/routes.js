@@ -1,9 +1,9 @@
 const express = require('express');
-
+const UserController = require('./controllers/userController');
+const userController = require('./controllers/userController');
 const router = express.Router();
 
-router.get('/', (req, res)=>{
-    return res.send('tar');
-})
+
+router.get('/users', UserController.index)
 
 module.exports = router;
