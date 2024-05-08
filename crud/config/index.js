@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const dbConfig = require("./config.js");
-const User = require('../models/User')
+const User = require("../models/User");
 const { development } = dbConfig;
 
 const connection = new Sequelize(
@@ -25,6 +25,6 @@ async function testConnection() {
   }
 }
 
-User.init(connection)
+User.init(connection);
 // Chamar a função para testar a conexão
 testConnection();
