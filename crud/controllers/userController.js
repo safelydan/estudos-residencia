@@ -1,7 +1,31 @@
 const { where } = require("sequelize");
 const User = require("../models/User");
+const bcrypt = require("bcrypt");
 
 module.exports = {
+  async login(req, res) {
+    const { email, password, isLogged } = req.body;
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      res.status(404).send({ msg: "Usuario nao encontrado" });
+    }
+
+    if (!bcrypt.compareSync(password, user.password)) {
+      return res.status(404).send({ msg: "E-mail ou Senha incorretos" });
+    }
+
+    const user_id = user.id;
+
+    await User.update({ isLogged }, { where: { id: user_id } });
+
+    user.password = undefined;
+
+    return res
+      .status(200)
+      .send({ msg: "Usuário logado com sucesso", user });
+  },
+
   async index(req, res) {
     const users = await User.findAll();
 
