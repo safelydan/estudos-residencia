@@ -56,8 +56,7 @@ module.exports = {
 
     // retorna uma resposta de sucesso com os dados do usuário cadastrado
     return res.status(201).send({
-      msg: `Usuario cadastrado com sucesso 
-        ${user}`,
+      msg: 'Usuario cadastrado com sucesso', user,
     });
   },
 
