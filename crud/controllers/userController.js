@@ -1,6 +1,15 @@
 const { where } = require("sequelize");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
+const authConfig = require("../config/auth.json");
+
+
+function generateToken(params = {}) {
+  return jwt.sign(params, authConfig.secret, {
+    expiresIn: 78300,
+  })
+}
 
 module.exports = {
   // função para fazer login de usuários
@@ -27,8 +36,10 @@ module.exports = {
 
     user.password = undefined; // remove a senha do objeto do usuário antes de enviar a resposta
 
+    const token = generateToken({id: user.id})
+
     // retorna uma resposta de sucesso com os dados do usuário (sem a senha)
-    return res.status(200).send({ msg: "Usuário logado com sucesso", user });
+    return res.status(200).send({ msg: "Usuário logado com sucesso", user, token });
   },
 
   // função para listar todos os usuários
@@ -54,9 +65,12 @@ module.exports = {
     // cria um novo usuário no banco de dados
     const user = await User.create({ name, email, password: passwordHash });
 
+    const token = generateToken({id: user.id})
+
     // retorna uma resposta de sucesso com os dados do usuário cadastrado
+    
     return res.status(201).send({
-      msg: 'Usuario cadastrado com sucesso', user,
+      msg: 'Usuario cadastrado com sucesso', user, token
     });
   },
 
