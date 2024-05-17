@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize");
 const dbConfig = require("./config.js");
 const User = require("../models/User");
+const Address = require("../models/Address.js");
 const { development } = dbConfig;
 
 const connection = new Sequelize(
@@ -26,5 +27,12 @@ async function testConnection() {
 }
 
 User.init(connection);
+Address.init(connection);
+
+
+User.hasMany(Address, { foreignKey: 'userId' });
+Address.belongsTo(User, { foreignKey: 'userId' });
+
+
 // Chamar a função para testar a conexão
 testConnection();

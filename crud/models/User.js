@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
+const Address = require('./Address')
 
 class User extends Model {
   static init(sequelize) {
@@ -16,5 +17,6 @@ class User extends Model {
     );
   }
 }
+
 
 module.exports = User;

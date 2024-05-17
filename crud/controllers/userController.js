@@ -51,6 +51,8 @@ module.exports = {
       return res.status(200).send({ message: "Nenhum usuário encontrado. " }); // retorna uma mensagem se nenhum usuário for encontrado
     }
 
+    
+
     // retorna uma resposta de sucesso com a lista de usuários
     return res.status(200).send({ users });
   },
