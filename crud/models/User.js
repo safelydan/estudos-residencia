@@ -19,4 +19,12 @@ class User extends Model {
 }
 
 
+
+User.hasMany(UserCourses, {foreignKey: 'userId'});
+UserCourses.belongsTo(User, {foreignKey: 'userId'});
+Course.hasMany(UserCourses, {foreignKey: 'CursoId'});
+UserCourses.belongsTo(Course, {foreignKey: 'CursoId'});
+
+
+
 module.exports = User;
