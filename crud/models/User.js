@@ -1,5 +1,6 @@
-const { Model, DataTypes } = require("sequelize");
-const Address = require('./Address')
+const {Model, DataTypes } = require("sequelize");
+const Course = require('./Course')
+const UserCourse = require('./UserCourse')
 
 class User extends Model {
   static init(sequelize) {
@@ -16,14 +17,17 @@ class User extends Model {
       }
     );
   }
+  static associate(models) {
+    this.belongsToMany(models.Course, { foreignKey: 'userId', through: 'userCourses', as: 'courses'});
+}
 }
 
 
 
-User.hasMany(UserCourses, {foreignKey: 'userId'});
-UserCourses.belongsTo(User, {foreignKey: 'userId'});
-Course.hasMany(UserCourses, {foreignKey: 'CursoId'});
-UserCourses.belongsTo(Course, {foreignKey: 'CursoId'});
+// User.hasMany(UserCourse, {foreignKey: 'userId'});
+// UserCourse.belongsTo(User, {foreignKey: 'userId'});
+// Course.hasMany(UserCourse, {foreignKey: 'courseId'});
+// UserCourse.belongsTo(Course, {foreignKey: 'courseId'});
 
 
 

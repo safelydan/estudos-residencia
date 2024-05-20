@@ -12,11 +12,13 @@ class Address extends Model {
             },
             {
                 sequelize,
-                modelName: "Address",
                 tableName: "addresses"
             }   
         )
     }
+    static associate(models) {
+        this.belongsTo(models.User, { foreignKey: 'userId', as: 'users' });
+      }
 }
 
 

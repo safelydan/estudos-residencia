@@ -19,7 +19,7 @@ module.exports = {
 
   async index(req, res) {
     const address = await Address.findAll({
-      include: { model: User, attributes: ["name"]},
+      include: { model: User, as: 'users', attributes: ["name"]},
     });
 
     if (address.length < 1) {

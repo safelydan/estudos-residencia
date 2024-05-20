@@ -1,7 +1,8 @@
 const express = require("express");
 const UserController = require("./controllers/userController");
 const AdressController = require("./controllers/addressController");
-const authMiddleware = require('./middlewares/auth')
+const authMiddleware = require('./middlewares/auth');
+const courseController = require("./controllers/courseController");
 const router = express.Router();
 
 router.get("/users", authMiddleware, UserController.index); // define a rota para listar todos os usuários
@@ -13,5 +14,7 @@ router.post("/users/login", UserController.login); // define a rota para realiza
 router.get('/users/address', authMiddleware, AdressController.index)
 router.post('/users/:userId/address', authMiddleware, AdressController.store)
 
+router.get('/users/:userId/courses', authMiddleware, courseController.index)
+router.post('/users/:userId/courses', authMiddleware, courseController.store)
 
 module.exports = router; // exporta o roteador para ser utilizado pelo aplicativo Express
